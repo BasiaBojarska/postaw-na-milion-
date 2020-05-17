@@ -1,0 +1,94 @@
+#jak cos to mocne ograniczenie tego kodu jest takie, ze nie zawarlam tutaj połączenia pomiędzy prawidłową odpowiedzią na początkowej liscie,
+#a tym, skąd program wie, że to jest prawidłowa odpowiedz. Ale to jest do dopracowania.
+#to jest początkowa liczba banknotów, bo w oryginalnej grze jest 40 plików banknotów do rozłożenia.
+
+liczba_plików = 40
+
+#kategoria jest tak zbudowana, że jest listą dwuwymiarową. pierwszy element to pytanie, drugi to baza odpowiedzi na nie, a trzeci to
+#prawidłowa odpowiedź
+
+kat1 = ["pyt1",["A) o1","B) o2","C) o3","D) o4"],["zapadka_C"]]
+
+#tu się drukują kategorię, przez odwołanie do powyższej listy, bo pierwszy element to właśnie baza odpowiedzi:
+
+for odpowiedz in kat1[1]:
+    print(odpowiedz)
+prawidlowa_zapadnia = "".join(kat1[2])
+print("Teraz będziesz rozkładał pliki banknotów na zapadkach. Jedna z zapadek musi pozostać pusta.")
+
+#zapadki działają na zasadzie słownika. pojęcie to zapadka, a definicja to ilość przypisanych banknotów. banknoty kładziemy
+#edytując słownik
+
+slownik = {"zapadka_A":"banknoty", "zapadka_B":"banknoty", "zapadka_C":"banknoty", "zapadka_D":"banknoty"}
+
+#liczba_A to zadeklarowanie liczby na jakąś wartość, żeby python sobie miał deklarację, bo inaczej się zesra. Wartość ta wynosi
+#-1 żeby móc wejść w pętle, ponieważ aby wejść w pętlę liczba albo musi być mniejsza od 0 (jak -1), albo być większa od 40
+#ma to na celu wymusić na użytkowniku podanie dobrej wartości liczby, tj. nie nierealnej jak mniejszej od zero
+#i nie większej od liczby banknotów, jaką dysponuje. +a w ogóle musze to poprawic bo teraz widze ze zjebalam, bo to
+#dziala dobrze tylko na pierwszą zapadkę XDDD później musi być warunek zmieniony na to, że nie można położyć więcej banknotów
+#niż się aktualnie ma
+
+liczba_A = -1
+while liczba_A < 0 or liczba_A > 40:
+    print("Ile plików banknotów chcesz położyć na zapadkę A?")
+    liczba_A = int(input())
+    if not liczba_A < 0 and not liczba_A > 40:
+        slownik["zapadka_A"] = liczba_A
+        liczba_plików -= liczba_A
+        print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+    else:
+        print("Liczba nieprawidłowa")
+liczba_B = -1
+while liczba_B < 0 or liczba_B > 40:
+    print("Ile plików banknotów chcesz położyć na zapadkę B?")
+    liczba_B = int(input())
+    if not liczba_B < 0 and not liczba_B > 40:
+        slownik["zapadka_B"] = liczba_B
+        liczba_plików -= liczba_B
+        print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+    else:
+        print("Liczba nieprawidłowa")
+liczba_C = -1
+while liczba_C < 0 or liczba_C > 40:
+    print("Ile plików banknotów chcesz położyć na zapadkę C?")
+    liczba_C = int(input())
+    if not liczba_C < 0 and not liczba_C > 40:
+        slownik["zapadka_C"] = liczba_C
+        liczba_plików -= liczba_C
+        print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+    else:
+        print("Liczba nieprawidłowa")
+print("Dla zapadki D pozostało tyle plików:", liczba_plików)
+#przy ostatnie zapadce już ma gdzieś to ile chcemy dać banknotów, po prostu bierze wszystko, co nam zostanie.
+liczba_D = liczba_plików
+if not liczba_D < 0 and not liczba_D > 40:
+    slownik["zapadka_D"] = liczba_D
+else:
+    print("Liczba nieprawidłowa")
+
+#w ponizszym fragmencie kodu python sobie sprawdza, czy zostawiliśmy puste zapadki (co jest obowiązkiem naszym) i jeżeli takowej nie
+#ma, to python ma do nas problem
+
+if not 0 in slownik.values():
+    print("Nie pozostawiłeś pustej zapadki! Popraw to.")
+
+#kiedy juz python ogarnie, czy zostawiliśmy puste zapadki czy nie, to nam pokazuje stan naszych zapadek i pyta, czy chcemy je zmienić,
+#tak jak w prawdziwym teleturnieju, bo przecież tam można przekładać
+
+print("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
+odpowiedz = input()
+if odpowiedz == "N":
+    if 0 in slownik.values():
+        if slownik["zapadka_C"] == 0:
+            print("Przegrałeś!")
+        else:
+            liczba_plików = slownik["zapadka_C"]
+            print("Brawo! Liczba zachowanych przez Ciebie plików to:", liczba_plików)
+#jak widać powyżej jeżeli odpowiemy, że nie chcemy zmieniać zapadni, to program sprawdza, czy zapadka z prawidłową odpowiedzią 
+#nie jest pusta. Jeżeli jest, to przegrywamy. Jeżeli nie jest, to liczba naszych banknotów zmienia się na liczbę postawioną
+#na prawidłową zapadkę. Czyli zachowujemy te pieniądze, które na niej były.
+
+elif odpowiedz == "T":
+    print("Na razie nic tu nie ma")
+#no a tu under construction
+
