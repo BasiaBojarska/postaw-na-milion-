@@ -1,0 +1,147 @@
+#dodałam przykładowe pytanie z kategorii żeby ładnie wyglądało
+kat_przyslowia=["Dokończ zdanie: a co po czyjej wielkości, jak nie ma w głowie…",["A. radości", "B. mądrości" ,"C. ufności", "D. miłości"],["zapadka_B"]]#["Dokończ zdanie: czym skorupka za młodu nasiąknie, tym na starość…",["A się stanie" ,"B trąci"," C będzie"," D się okaże" ],["zapadka_B"]],["Uzupełnij: dobrego syna nigdy ___ nie zapomina.",["A nikt"," B Bóg"," C się","D ojciec"],["zapadka_B"]]
+
+
+liczba_plików = 40
+
+
+
+for odpowiedz in kat_przyslowia[1]:
+    print(odpowiedz)
+prawidlowa_zapadnia = "".join(kat_przyslowia[2])
+print("Teraz będziesz rozkładał pliki banknotów na zapadkach. Jedna z zapadek musi pozostać pusta.")
+
+
+slownik = {"zapadka_A":"banknoty", "zapadka_B":"banknoty", "zapadka_C":"banknoty", "zapadka_D":"banknoty"}
+
+
+
+liczba_A = -1
+while liczba_A < 0 or liczba_A > 40:
+    print("Ile plików banknotów chcesz położyć na zapadkę A?")
+    liczba_A = int(input())
+    if not liczba_A < 0 and not liczba_A > 40:
+        slownik["zapadka_A"] = liczba_A
+        liczba_plików -= liczba_A
+        print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+    else:
+        print("Liczba nieprawidłowa")
+liczba_B = -1
+while liczba_B < 0 or liczba_B > 40:
+    print("Ile plików banknotów chcesz położyć na zapadkę B?")
+    liczba_B = int(input())
+    while liczba_B>liczba_plików:
+        print("Nie masz tyle plików!")
+        liczba_B=int(input("Ile plików banknotów chcesz położyć na zapadkę B?"))
+    if not liczba_B < 0:
+        slownik["zapadka_B"] = liczba_B
+        liczba_plików -= liczba_B
+        print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+    else:
+        print("Liczba nieprawidłowa")
+liczba_C = -1
+while liczba_C < 0 or liczba_C > 40:
+    print("Ile plików banknotów chcesz położyć na zapadkę C?")
+    liczba_C = int(input())
+    while liczba_C>liczba_plików:
+        print("Nie masz tyle plików!")
+        liczba_C=int(input("Ile plików banknotów chcesz położyć na zapadkę C?\n"))
+    if not liczba_C < 0:
+        slownik["zapadka_C"] = liczba_C
+        liczba_plików -= liczba_C
+        print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+    else:
+        print("Liczba nieprawidłowa")
+print("Dla zapadki D pozostało tyle plików:", liczba_plików)
+
+liczba_D = liczba_plików
+if not liczba_D < 0 and not liczba_D > 40:
+    slownik["zapadka_D"] = liczba_D
+    liczba_plików-=liczba_D
+else:
+    print("Liczba nieprawidłowa")
+
+
+
+if not 0 in slownik.values():
+    print("Nie pozostawiłeś pustej zapadki! Popraw to.")
+
+
+
+print("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
+odpowiedz = input()
+if odpowiedz == "N":
+    if 0 in slownik.values():
+        if slownik["zapadka_C"] == 0:
+            print("Przegrałeś!")
+        else:
+            liczba_plików = slownik["zapadka_C"]
+            print("Brawo! Liczba zachowanych przez Ciebie plików to:", liczba_plików)
+
+
+#tutaj się zaczyna kod, który zrobiłam i generalnie to działa tylko nie wiem na ile będzie działał w innych przypadkach XD
+#ale dodałam zabezpieczenia gdyby gracz chciał postawić więcej plików niż posiada itd.
+#+ gdy podamy jaką zapadkę chcemy zmienić- to program automatycznie nam zabiera z tej zapadki wszystko więc musimy podać całą wartość
+#którą tam chcemy mieć
+#więc jeśli chcemy tylko zwiększyć hajs- to musimy ten hajs najpierw zmniejszyć w przypadku innej zapadki.
+
+elif odpowiedz == "T":
+    while True:
+        print("którą zapadkę chcesz zmienić?- Wpisz q by przestać")
+        zapadka=input()
+        if zapadka=="zapadka_A":
+            liczba_plików+=slownik["zapadka_A"]
+            print("masz do dyspozycji",liczba_plików,"plików")
+            print("podaj nową ilosć banknotów")
+            nowe_pliki=int(input())
+            while nowe_pliki>liczba_plików:
+                print("nie masz tyle plików!")
+                nowe_pliki=int(input())
+            slownik["zapadka_A"]=nowe_pliki
+            liczba_plików-=nowe_pliki
+        elif zapadka=="zapadka_B":
+            liczba_plików+=slownik["zapadka_B"]
+            print("masz do dyspozycji",liczba_plików,"plików")
+            print("podaj nową ilosć banknotów")
+            nowe_pliki=int(input())
+            while nowe_pliki>liczba_plików:
+                print("nie masz tyle plików!")
+                nowe_pliki=int(input())
+            slownik["zapadka_B"]=nowe_pliki
+            liczba_plików-=nowe_pliki
+        elif zapadka=="zapadka_C":
+            liczba_plików+=slownik["zapadka_C"]
+            print("masz do dyspozycji",liczba_plików,"plików")
+            print("podaj nową ilosć banknotów")
+            nowe_pliki=int(input())
+            while nowe_pliki>liczba_plików:
+                print("nie masz tyle plików!")
+                nowe_pliki=int(input())
+            slownik["zapadka_C"]=nowe_pliki
+            liczba_plików-=nowe_pliki
+        elif zapadka=="zapadka_D":
+            liczba_plików+=slownik["zapadka_D"]
+            print("masz do dyspozycji",liczba_plików,"plików")
+            print("podaj nową ilosć banknotów")
+            nowe_pliki=int(input())
+            while nowe_pliki>liczba_plików:
+                print("nie masz tyle plików!")
+                nowe_pliki=int(input())
+            slownik["zapadka_D"]=nowe_pliki
+            liczba_plików-=nowe_pliki
+        elif zapadka=="q":
+            if liczba_plików>0:
+                print("nie wykorzystałeś wszystkich plików!")
+            else:
+                break
+
+
+# no i tu nam ostatecznie mówi jak tam się sytuacja z naszą wygraną ma
+
+print("Zapadki:",slownik)
+if 0 in slownik.values():
+    if slownik["zapadka_C"] == 0:
+        print("Przegrałeś!")
+    else:
+        liczba_plików = slownik["zapadka_C"]
+        print("Brawo! Liczba zachowanych przez Ciebie plików to:", liczba_plików)
