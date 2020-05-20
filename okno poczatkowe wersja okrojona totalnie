@@ -1,0 +1,15 @@
+gracz=input()
+
+print("Witaj",gracz," w programie Postaw na Milion!")
+print("Twoim zadaniem bedzie odpowiadanie na pytania na roznym poziomie trudnosci, obstawiajac na odpowiedzi tytulowy milion złotych. Odpowiadaj poprawnie, by wygrac jak najwiecej! ")
+print("By wyswietlic zasady gry, nacisnij 1.")
+print("By rozpoczac rozgrywke wcisnij 2")
+wybor_menu=int(input())
+if wybor_menu==1:
+    print("Na starcie gry do dyspozycji masz milion zlotych.\nGra sklada sie z 8 poziomow, na kazdym z nich bedziesz musial/musiala odpowiedziec na jedno pytanie.\nOdpowiadasz obstawiajac pieniadze, ktore dostaniesz na poczatku, na dane odpowiedzi.\nJesli jestes jakiejs pewny, mozesz postawic na nia cala kwote.\nJesli nie, mozesz rozlozyc ja na dodatkowe odpowiedzi.\nWszystko zalezy od Ciebie. :) ")
+elif wybor_menu==2:
+    print("A zatem przejdźmy do rozgrywki.")
+
+else:
+    print("Błąd. Uruchom program ponownie.")
+#tu chyba nie musze niczego tlumaczyc XD
