@@ -1,0 +1,221 @@
+kat1 = ["pyt1",["A) o1","B) o2","C) o3","D) o4"],["C"]]
+for odpowiedz in kat1[1]:
+    print(odpowiedz)
+prawidlowa_zapadnia = "".join(kat1[2])
+print("Masz 40 plików banknotów. Teraz będziesz rozkładał pliki banknotów na zapadkach. Jedna z zapadek musi pozostać pusta.")
+slownik = {"zapadka_A":"banknoty", "zapadka_B":"banknoty", "zapadka_C":"banknoty", "zapadka_D":"banknoty"}
+while True:
+    liczba_plików = 40
+    liczba_A = -1
+    while liczba_A < 0 or liczba_A > 40:
+        print("Ile plików banknotów chcesz położyć na zapadkę A?")
+        liczba_A = int(input())
+        if not liczba_A < 0 and not liczba_A > 40:
+            slownik["zapadka_A"] = liczba_A
+            liczba_plików -= liczba_A
+            print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+        else:
+            print("Liczba nieprawidłowa")
+    liczba_B = -1
+    while liczba_B < 0 or liczba_B > 40:
+        print("Ile plików banknotów chcesz położyć na zapadkę B?")
+        liczba_B = int(input())
+        if not liczba_B < 0 and not liczba_B > 40:
+            slownik["zapadka_B"] = liczba_B
+            liczba_plików -= liczba_B
+            print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+        else:
+            print("Liczba nieprawidłowa")
+    liczba_C = -1
+    while liczba_C < 0 or liczba_C > 40:
+        print("Ile plików banknotów chcesz położyć na zapadkę C?")
+        liczba_C = int(input())
+        if not liczba_C < 0 and not liczba_C > 40:
+            slownik["zapadka_C"] = liczba_C
+            liczba_plików -= liczba_C
+            print("Pozostało ci jeszcze tyle plików:", liczba_plików)
+        else:
+            print("Liczba nieprawidłowa")
+    print("Dla zapadki D pozostało tyle plików:", liczba_plików)
+    liczba_D = liczba_plików
+    if not liczba_D < 0 and not liczba_D > 40:
+        slownik["zapadka_D"] = liczba_D
+    else:
+        print("Liczba nieprawidłowa")
+    if not 0 in slownik.values():
+        print("Nie pozostawiłeś pustej zapadki! Popraw to.")
+    else:
+        break
+print("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
+odpowiedz = input()
+nowa_liczba_plikow = 0
+if odpowiedz == "N":
+    if 0 in slownik.values():
+        if slownik["zapadka_C"] == 0:
+            print("Przegrałeś!")
+        else:
+            liczba_plików = slownik["zapadka_C"]
+            print("Brawo! Liczba zachowanych przez Ciebie plików to:", liczba_plików)
+elif odpowiedz == "T":
+    print("Z której zapadki chcesz zabrać pieniądze?")
+    odpowiedz = input()
+    if odpowiedz == "A":
+        while True:
+            print("Ile pieniędzy chcesz zabrać z zapadki A?")
+            ilosc = int(input())
+            if not ilosc < 0 and ilosc <= int(slownik["zapadka_A"]):
+                roznica = int(slownik["zapadka_A"]) - ilosc
+                slownik["zapadka_A"] = roznica
+                nowa_liczba_plikow += ilosc
+                print("Teraz na zapadce A znajduje się", roznica, "banknotów")
+                break
+            else:
+                print("Liczba nieprawidłowa!")
+    elif odpowiedz == "B":
+        while True:
+            print("Ile pieniędzy chcesz zabrać z zapadki B?")
+            ilosc = int(input())
+            if not ilosc < 0 and ilosc <= int(slownik["zapadka_B"]):
+                roznica = int(slownik["zapadka_B"]) - ilosc
+                slownik["zapadka_B"] = roznica
+                nowa_liczba_plikow += ilosc
+                print("Teraz na zapadce B znajduje się", roznica, "banknotów")
+                break
+            else:
+                print("Liczba nieprawidłowa!")
+    elif odpowiedz == "C":
+        while True:
+            print("Ile pieniędzy chcesz zabrać z zapadki C?")
+            ilosc = int(input())
+            if not ilosc < 0 and ilosc <= int(slownik["zapadka_C"]):
+                roznica = int(slownik["zapadka_C"]) - ilosc
+                slownik["zapadka_C"] = roznica
+                nowa_liczba_plikow += ilosc
+                print("Teraz na zapadce C znajduje się", roznica, "banknotów")
+                break
+            else:
+                print("Liczba nieprawidłowa!")
+    elif odpowiedz == "D":
+        while True:
+            print("Ile pieniędzy chcesz zabrać z zapadki D?")
+            ilosc = int(input())
+            if not ilosc < 0 and ilosc <= int(slownik["zapadka_D"]):
+                roznica = int(slownik["zapadka_D"]) - ilosc
+                slownik["zapadka_D"] = roznica
+                nowa_liczba_plikow += ilosc
+                print("Teraz na zapadce D znajduje się", roznica, "banknotów")
+                break
+            else:
+                print("Liczba nieprawidłowa!")
+while True:
+    print("""Czy teraz chcesz położyć pieniądze na inną zapadkę (wciśnij \"P\"), czy znów zabrać pienądze z zapadki? (wciśnij \"Z\".
+    Jeżeli chcesz zakończyć rozkładanie pieniędzy wciśnij \"Q\"""")
+    odpowiedz = input()
+    if odpowiedz == "P":
+        print("Na którą zapadkę chcesz położyć pieniądze?")
+        odpowiedz = input()
+        if odpowiedz == "A":
+            while True:
+                print("Ile plików banknotów chcesz położyć na zapadkę A?")
+                liczba = int(input())
+                if not liczba < 0 and not liczba > nowa_liczba_plikow:
+                    slownik["zapadka_A"] = int(slownik["zapadka_A"]) + liczba
+                    nowa_liczba_plikow -= liczba
+                    print("Pozostało ci jeszcze tyle plików:", nowa_liczba_plikow)
+                    print("Teraz zapadki wyglądają tak", slownik)
+                    break
+                else:
+                    print("Liczba nieprawidłowa")
+        elif odpowiedz == "B":
+            while True:
+                print("Ile plików banknotów chcesz położyć na zapadkę B?")
+                liczba = int(input())
+                if not liczba < 0 and not liczba > nowa_liczba_plikow:
+                    slownik["zapadka_B"] = int(slownik["zapadka_B"]) + liczba
+                    nowa_liczba_plikow -= liczba
+                    print("Pozostało ci jeszcze tyle plików:", nowa_liczba_plikow)
+                    print("Teraz zapadki wyglądają tak", slownik)
+                    break
+                else:
+                    print("Liczba nieprawidłowa")
+        elif odpowiedz == "C":
+            while True:
+                print("Ile plików banknotów chcesz położyć na zapadkę C?")
+                liczba = int(input())
+                if not liczba < 0 and not liczba > nowa_liczba_plikow:
+                    slownik["zapadka_C"] = int(slownik["zapadka_C"]) + liczba
+                    nowa_liczba_plikow -= liczba
+                    print("Pozostało ci jeszcze tyle plików:", nowa_liczba_plikow)
+                    print("Teraz zapadki wyglądają tak", slownik)
+                    break
+                else:
+                    print("Liczba nieprawidłowa")
+        elif odpowiedz == "D":
+            while True:
+                print("Ile plików banknotów chcesz położyć na zapadkę D?")
+                liczba = int(input())
+                if not liczba < 0 and not liczba > nowa_liczba_plikow:
+                    slownik["zapadka_D"] = int(slownik["zapadka_D"]) + liczba
+                    nowa_liczba_plikow -= liczba
+                    print("Pozostało ci jeszcze tyle plików:", nowa_liczba_plikow)
+                    print("Teraz zapadki wyglądają tak", slownik)
+                    break
+                else:
+                    print("Liczba nieprawidłowa")
+    elif odpowiedz == "Z":
+        print("Z której zapadki chcesz zabrać pieniądze?")
+        odpowiedz = input()
+        if odpowiedz == "A":
+            while True:
+                print("Ile pieniędzy chcesz zabrać z zapadki A?")
+                ilosc = int(input())
+                if not ilosc < 0 and ilosc <= int(slownik["zapadka_A"]):
+                    roznica = int(slownik["zapadka_A"]) - ilosc
+                    slownik["zapadka_A"] = roznica
+                    nowa_liczba_plikow += ilosc
+                    print("Masz teraz w rękach taką liczbę banknotów:", nowa_liczba_plikow)
+                    print("Teraz na zapadce A znajduje się", roznica, "banknotów")
+                    break
+                else:
+                    print("Liczba nieprawidłowa!")
+        elif odpowiedz == "B":
+            while True:
+                print("Ile pieniędzy chcesz zabrać z zapadki B?")
+                ilosc = int(input())
+                if not ilosc < 0 and ilosc <= int(slownik["zapadka_B"]):
+                    roznica = int(slownik["zapadka_B"]) - ilosc
+                    slownik["zapadka_B"] = roznica
+                    nowa_liczba_plikow += ilosc
+                    print("Masz teraz w rękach taką liczbę banknotów:", nowa_liczba_plikow)
+                    print("Teraz na zapadce B znajduje się", roznica, "banknotów")
+                    break
+                else:
+                    print("Liczba nieprawidłowa!")
+        elif odpowiedz == "C":
+            while True:
+                print("Ile pieniędzy chcesz zabrać z zapadki C?")
+                ilosc = int(input())
+                if not ilosc < 0 and ilosc <= int(slownik["zapadka_C"]):
+                    roznica = int(slownik["zapadka_C"]) - ilosc
+                    slownik["zapadka_C"] = roznica
+                    nowa_liczba_plikow += ilosc
+                    print("Masz teraz w rękach taką liczbę banknotów:", nowa_liczba_plikow)
+                    print("Teraz na zapadce C znajduje się", roznica, "banknotów")
+                    break
+                else:
+                    print("Liczba nieprawidłowa!")
+        elif odpowiedz == "D":
+            while True:
+                print("Ile pieniędzy chcesz zabrać z zapadki D?")
+                ilosc = int(input())
+                if not ilosc < 0 and ilosc <= int(slownik["zapadka_D"]):
+                    roznica = int(slownik["zapadka_D"]) - ilosc
+                    slownik["zapadka_D"] = roznica
+                    nowa_liczba_plikow += ilosc
+                    print("Masz teraz w rękach taką liczbę banknotów:", nowa_liczba_plikow)
+                    print("Teraz na zapadce D znajduje się", roznica, "banknotów")
+                    break
+                else:
+                    print("Liczba nieprawidłowa!")
+    elif odpowiedz == "Q":
+        break
