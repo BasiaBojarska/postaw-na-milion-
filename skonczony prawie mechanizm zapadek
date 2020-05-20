@@ -218,4 +218,7 @@ while True:
                 else:
                     print("Liczba nieprawidłowa!")
     elif odpowiedz == "Q":
-        break
+        if nowa_liczba_plikow > 0:
+            print("Nie umieściłeś na zapadkach wszystkich banknotów!")
+        else:
+            break
