@@ -1,0 +1,148 @@
+#w zasadzie nic się nie zmieniło, po prostu przerobiłam na funkcje żeby było bardziej uniwersalne
+# największy minus to to, że nie umiem zrobić zmiennej "liczba_plików" tak żeby te pliki się nie odradzały na nowo przy każdej zapadce,
+#może ktoś to jakoś przerobi ale ogarnę potem
+
+
+liczba_plików=40
+
+print("Teraz będziesz rozkładał pliki banknotów na zapadkach. Jedna z zapadek musi pozostać pusta.")
+slownik = {"zapadka_A":"banknoty", "zapadka_B":"banknoty", "zapadka_C":"banknoty", "zapadka_D":"banknoty"}
+
+
+#funkcja do obstawiania forsy
+
+def obstawianie(liczba,slownik,zapadka,pliki):
+    while liczba>pliki:
+        print("Nie masz tyle plików!")
+        liczba=int(input("Podaj nową liczbę: "))
+    while liczba<0:
+        print("liczba nieprawidłowa")
+        liczba = int(input("Podaj nową liczbę: "))
+
+    if not liczba < 0 and not liczba > pliki:
+            slownik[zapadka]=liczba
+            pliki-=liczba
+            return "Pozostało ci jeszcze tyle plików:" , pliki
+
+
+
+
+#no i tutaj funkcja do zmiany zapadek, w jeden funkcji zrobiłam też sprawdzanie czy np została jedna zapadka pusta itd
+#przez co jest długa, ale działa więc chyba git
+
+def zmiana_zapadek(slownik,prawidlowa_zapadka):
+    liczba_plików=0
+    print("Tak wyglądają zapadki:", slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
+    odpowiedz=input()
+    if odpowiedz == "N":
+        while 0 not in slownik.values():
+            print("Nie zostawiłeś pustej zapadki! Popraw to.")
+            print("Tak wyglądają zapadki:", slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
+            odpowiedz = input()
+        if slownik[prawidlowa_zapadka] == 0:
+           return "Przegrałeś!"
+        else:
+            liczba_plików = slownik[prawidlowa_zapadka]
+            return "Brawo! Liczba zachowanych przez Ciebie plików to:", liczba_plików
+    elif odpowiedz=="T":
+        while True:
+            print("którą zapadkę chcesz zmienić?- Wpisz q by przestać")
+            zapadka = input()
+            if zapadka == "zapadka_A":
+                liczba_plików += slownik["zapadka_A"]
+                print("masz do dyspozycji", liczba_plików, "plików")
+                print("podaj nową ilosć banknotów")
+                nowe_pliki = int(input())
+                while nowe_pliki > liczba_plików:
+                    print("nie masz tyle plików!")
+                    nowe_pliki = int(input())
+                slownik["zapadka_A"] = nowe_pliki
+                liczba_plików -= nowe_pliki
+                print("Teraz zapadki wyglądają tak: ",slownik)
+            elif zapadka == "zapadka_B":
+                liczba_plików += slownik["zapadka_B"]
+                print("masz do dyspozycji", liczba_plików, "plików")
+                print("podaj nową ilosć banknotów")
+                nowe_pliki = int(input())
+                while nowe_pliki > liczba_plików:
+                    print("nie masz tyle plików!")
+                    nowe_pliki = int(input())
+                slownik["zapadka_B"] = nowe_pliki
+                liczba_plików -= nowe_pliki
+                print("Teraz zapadki wyglądają tak: ", slownik)
+            elif zapadka == "zapadka_C":
+                liczba_plików += slownik["zapadka_C"]
+                print("masz do dyspozycji", liczba_plików, "plików")
+                print("podaj nową ilosć banknotów")
+                nowe_pliki = int(input())
+                while nowe_pliki > liczba_plików:
+                    print("nie masz tyle plików!")
+                    nowe_pliki = int(input())
+                slownik["zapadka_C"] = nowe_pliki
+                liczba_plików -= nowe_pliki
+                print("Teraz zapadki wyglądają tak: ", slownik)
+            elif zapadka == "zapadka_D":
+                liczba_plików += slownik["zapadka_D"]
+                print("masz do dyspozycji", liczba_plików, "plików")
+                print("podaj nową ilosć banknotów")
+                nowe_pliki = int(input())
+                while nowe_pliki > liczba_plików:
+                    print("nie masz tyle plików!")
+                    nowe_pliki = int(input())
+                slownik["zapadka_D"] = nowe_pliki
+                liczba_plików -= nowe_pliki
+                print("Teraz zapadki wyglądają tak: ", slownik)
+            elif zapadka == "q":
+                if liczba_plików > 0:
+                    print("nie wykorzystałeś wszystkich plików!")
+                elif 0 not in slownik.values():
+                    print("Nie zostawiłeś pustej zapadki!")
+                else:
+                    break
+
+
+        print("Zapadki:", slownik)
+        if 0 in slownik.values():
+            if slownik[prawidlowa_zapadka] == 0:
+                return "Przegrałeś!"
+            else:
+                liczba_plików = slownik[prawidlowa_zapadka]
+                return "Brawo! Liczba zachowanych przez Ciebie plików to:", liczba_plików
+
+
+
+
+
+#no i tu przykłady jak to wszystko działa, chyba jasne
+#trzeba wpisać prawidłową zapadkę jak wywołujemy funkcję, bo nie wiedziałam jak to inaczej zrobić
+
+
+
+
+liczba_obstawiona1=int(input("Ile plików banknotów chcesz położyć na zapadkę A?"))
+print(obstawianie(liczba_obstawiona1,slownik,"zapadka_A",liczba_plików))
+
+liczba_obstawiona2=int(input("Ile plików chcesz położyć na zapadkę B?"))
+print(obstawianie(liczba_obstawiona2,slownik,"zapadka_B",liczba_plików-liczba_obstawiona1))
+
+liczba_obstawiona3=int(input("Ile plików banknotów chcesz położyć na zapadkę C?"))
+print(obstawianie(liczba_obstawiona3,slownik,"zapadka_C",liczba_plików-liczba_obstawiona1-liczba_obstawiona2))
+
+
+
+pozostale_zapadki=liczba_obstawiona1+liczba_obstawiona2+liczba_obstawiona3
+liczba_D = liczba_plików-pozostale_zapadki
+
+print("Dla zapadki D pozostało tyle plików:", liczba_D)
+
+if not liczba_D < 0 and not liczba_D > 40:
+    slownik["zapadka_D"] = liczba_D
+    liczba_plików-=liczba_D
+else:
+    print("Liczba nieprawidłowa")
+
+if not 0 in slownik.values():
+    print("Nie pozostawiłeś pustej zapadki! Popraw to.")
+
+
+print(zmiana_zapadek(slownik,"zapadka_C"))
