@@ -1,1 +1,29 @@
-#nadal dopracowywuje, bo jednak nie smiga tak jak powinno :(
+#tam jeszcze timer wcisne
+
+import random
+#wstawilam tylko 2 sample pytania, jako że to taka podglądowa wersja, jutro wrzucę reszte z pierwszego poziomu
+pytania = [["Które z tych zwierząt jest tradycyjnie nazywane najlepszym przyjacielem człowieka?",["Pies",1],["Kot",0],["Chomik",0],["Papuga",0]],["Które z tych zwierząt nie występuje naturalnie w Afryce?",["Lew",0],["Panda wielka",1],["Zebra",0],["Żyrafa",0]]]
+losuj_pytanie = pytania[random.randint(0,1)]
+portfel = 1000000
+#te cyferki przy odpowiedziach to mnożniki, i dziala to w ten sposob, ze jesli zostanie postawiona dana kwota na dane odpowiedzi
+#to mnoży się ta postawiona kwota przez odpowiednia liczbe - 0 jesli niepoprawna odpowiedz, 1 jesli poprawna.
+#wymnożona kwota wraca do puli gracza
+class gra():
+    def obstawianie(self,portfel):
+        print(losuj_pytanie[0])
+        index=1
+        for value in losuj_pytanie[1:]:
+            print(index,".",value[0])
+            index+=1
+        print("W przedstawionej kolejności przypisz podaj kwoty które chcesz przypisać do kolejnych odzpowiedzi. Ilosć pieniędzy do obstawienia:",portfel)
+        ilosc_obstawiona_1=int(input("Kwota na odpowiedź pierwszą:"))
+        ilosc_obstawiona_2=int(input("Kwota na odpowiedź drugą:"))
+        ilosc_obstawiona_3=int(input("Kwota na odpowiedź trzecią:"))
+        ilosc_obstawiona_4=int(input("Kwota na odpowiedź czwartą:"))
+        portfel = losuj_pytanie[1][1]*ilosc_obstawiona_1+losuj_pytanie[2][1]*ilosc_obstawiona_2+losuj_pytanie[3][1]*ilosc_obstawiona_3+losuj_pytanie[4][1]*ilosc_obstawiona_4
+        print("Brawo udało Ci się zachować:",portfel)
+
+
+
+kappa = gra()
+kappa.obstawianie(portfel)
