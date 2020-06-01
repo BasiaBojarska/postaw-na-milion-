@@ -1,0 +1,70 @@
+#pierwsza próba połączenia kodów, chyba nic nie muszę tłumaczyć, bo to w większości podjebany kod Patrycji
+
+import random
+
+pytania_poziom1 = [["Które z tych zwierząt jest tradycyjnie nazywane najlepszym przyjacielem człowieka?",["Pies",1],["Kot",0],["Chomik",0],["Papuga",0]],["Które z tych zwierząt nie występuje naturalnie w Afryce?",["Lew",0],["Panda wielka",1],["Zebra",0],["Żyrafa",0]],["Jaki ptak znajduje się na polskim godle?",["Kondor wielki",0],["Orzeł bielik",1],["Jastrząb zwyczajny",0],["Biała gołębica",0]],["Dokończ zdanie: a co po czyjej wielkości, jak nie ma w głowie…",["radości",0],["mądrości",1],["ufności",0],["miłości",0]],["Dokończ zdanie: czym skorupka za młodu nasiąknie, tym na starość…",["się stanie",0],["trąci",1],["będzie",0],["się okaże",0]],["Najpopularniejszym polskim przysłowiem w roku 2018 zostało:",["łaska pańska na pstrym koniu jeździ",0],["Grosz do grosza, a będzie kokosza",0],["Dzieci i ryby głosu nie mają",0],["Bez pracy nie ma kołaczy",1]],["W Polsce obchodzimy święto flagi:",["2 maja",1],["3 maja",0],["2 czerwca",0],["3 czerwca",0]],["Tradycyjną potrawą spożywaną z okazji Dnia Dziękczynienia jest:",["pieczony indyk",1],["kurczak z rożna",0],["bażant z pieca",0],["kaczka po wietnamsku",0]],["Polowanie na jajka to zwyczaj zwiazany z:",["Wielkanocą",1],["Bożym Narodzeniem",0],["Haloween",0],["Chanuką",0]],["Który z podanych herosów w mitologii greckiej uchodził za syna Zeusa?",["Achilles",0],["Jazon",0],["Perseusz",1],["Hippotoon",0]],["Która z podanych bogiń była opiekunką ogniska domowego?",["Atena",0],["Artemida",0],["Demeter",0],["Hestia",1]],["Kim były Erynie?",["boginiami losu",0],["boginiami zemsty",1],["bóstwami morskimi",0],["boginiami młodości",0]]]
+
+pytania_juz_wylosowane=[]
+
+losuj_pytanie = random.choice(pytania_poziom1)
+moj_portfel = 1000000
+moj_pozostaly_hajs=1000000
+
+
+class gra():
+
+    def obstawianie_cztery_zapadki(self,portfel,pozostaly_hajs):
+        losuj_pytanie = random.choice(pytania_poziom1)
+        while losuj_pytanie in pytania_juz_wylosowane:
+            losuj_pytanie=random.choice(pytania_poziom1)
+        pytania_juz_wylosowane.append(losuj_pytanie)
+        print(losuj_pytanie[0])
+
+        index=1
+        for value in losuj_pytanie[1:]:
+            print(index,".",value[0])
+            index+=1
+        print("W przedstawionej kolejności podaj kwoty które chcesz przypisać do kolejnych odzpowiedzi. Ilosć pieniędzy do obstawienia:",portfel)
+
+        ilosc_obstawiona_1=int(input("Kwota na odpowiedź pierwszą:"))
+        while ilosc_obstawiona_1>pozostaly_hajs:
+            print("Nie masz tyle plików!")
+            ilosc_obstawiona_1 = int(input("Kwota na odpowiedź pierwszą:"))
+        while ilosc_obstawiona_1<0:
+            print("Niewłaściwa liczba")
+            ilosc_obstawiona_1 = int(input("Kwota na odpowiedź pierwszą:"))
+        pozostaly_hajs -= ilosc_obstawiona_1
+
+        ilosc_obstawiona_2=int(input("Kwota na odpowiedź drugą:"))
+        while ilosc_obstawiona_2>pozostaly_hajs:
+            print("Nie masz tyle plików!")
+            ilosc_obstawiona_2 = int(input("Kwota na odpowiedź drugą:"))
+        while ilosc_obstawiona_2<0:
+            print("Niewłaściwa liczba")
+            ilosc_obstawiona_2 = int(input("Kwota na odpowiedź drugą:"))
+        pozostaly_hajs-=ilosc_obstawiona_2
+
+        ilosc_obstawiona_3=int(input("Kwota na odpowiedź trzecią:"))
+        while ilosc_obstawiona_3>pozostaly_hajs:
+            print("Nie masz tyle plików!")
+            ilosc_obstawiona_3 = int(input("Kwota na odpowiedź trzecią:"))
+        while ilosc_obstawiona_3<0:
+            print("Niewłaściwa liczba")
+            ilosc_obstawiona_3=int(input("Kwota na odpowiedź trzecią:"))
+        pozostaly_hajs-=ilosc_obstawiona_3
+
+        ilosc_obstawiona_4=int(input("Kwota na odpowiedź czwartą:"))
+        while ilosc_obstawiona_4>pozostaly_hajs:
+            print("Nie masz tyle plików!")
+            ilosc_obstawiona_4 = int(input("Kwota na odpowiedź czwartą:"))
+        while ilosc_obstawiona_4<0:
+            print("Niewłaściwa liczba")
+            ilosc_obstawiona_4 = int(input("Kwota na odpowiedź czwartą:"))
+        pozostaly_hajs-=ilosc_obstawiona_4
+
+        wygrana = losuj_pytanie[1][1]*ilosc_obstawiona_1+losuj_pytanie[2][1]*ilosc_obstawiona_2+losuj_pytanie[3][1]*ilosc_obstawiona_3+losuj_pytanie[4][1]*ilosc_obstawiona_4
+        print("Brawo udało Ci się zachować:",wygrana)
+
+
+kappa = gra()
+kappa.obstawianie_cztery_zapadki(moj_portfel,moj_pozostaly_hajs)
