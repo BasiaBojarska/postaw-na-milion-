@@ -70,6 +70,16 @@ def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze):
             else:
                 print("Liczba nieprawidłowa!")
 
+    def obwarowanie_przed_idiotami(pytanie, opcja1, opcja2, opcja3, opcja4):
+          odpowiedz = ""
+          while odpowiedz != opcja1 and odpowiedz != opcja2 and odpowiedz != opcja3 and odpowiedz != opcja4:
+              print(pytanie)
+              odpowiedz = input()
+              if odpowiedz != opcja1 and odpowiedz != opcja2 and odpowiedz != opcja3 and odpowiedz != opcja4:
+                  print("Nieprawdiłowa wartość!")
+              elif odpowiedz == opcja1 or odpowiedz == opcja2 or odpowiedz == opcja3 or odpowiedz == opcja4:
+                  return odpowiedz
+
 
     kategorie_poziomu = [k1,k2,k3,k4]
 
@@ -110,8 +120,7 @@ def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze):
             pieniadze = pliki_na_poczatku
         else:
             break
-    print("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
-    odpowiedz_zmiana = input()
+    odpowiedz_zmiana = obwarowanie_przed_idiotami("""Tak wyglądają zapadki:""" + str(slownik) + """.Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")""", "T", "N", "N", "T")
     nowa_liczba_pieniedzy = 0
     if odpowiedz_zmiana == "N":
         if 0 in slownik.values():
@@ -123,8 +132,7 @@ def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze):
                 print("Brawo! Na prawidłowej zapadce znajdowały się banknoty! Liczba zachowanych przez Ciebie plików to:", pieniadze)
                 return pieniadze
     if odpowiedz_zmiana == "T":
-        print("Z której zapadki chcesz zabrać pieniądze?")
-        odpowiedz = input()
+        odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrać pieniądze?", "A", "B", "C", "D")
         if odpowiedz == "A":
             nowa_liczba_pieniedzy = przekladanie_pieniedzy("zapadka_A", "A", nowa_liczba_pieniedzy)
         elif odpowiedz == "B":
@@ -135,12 +143,10 @@ def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze):
             nowa_liczba_pieniedzy = przekladanie_pieniedzy("zapadka_D", "D", nowa_liczba_pieniedzy)
     if odpowiedz_zmiana == "T":
         while True:
-            print("""Czy teraz chcesz położyć pieniądze na inną zapadkę (wciśnij \"P\"), czy znów zabrać pienądze z zapadki? (wciśnij \"Z\".
-            Jeżeli chcesz zakończyć rozkładanie pieniędzy wciśnij \"Q\"""")
-            odpowiedz = input()
+            odpowiedz = obwarowanie_przed_idiotami("""Czy teraz chcesz położyć pieniądze na inną zapadkę (wciśnij \"P\"), czy znów zabrać pienądze z zapadki? (wciśnij \"Z\".
+            Jeżeli chcesz zakończyć rozkładanie pieniędzy wciśnij \"Q\"""", "Q", "P", "Z", "Z")
             if odpowiedz == "P":
-                print("Na którą zapadkę chcesz położyć pieniądze?")
-                odpowiedz = input()
+                odpowiedz = obwarowanie_przed_idiotami("Na którą zapadkę chcesz położyc pieniądze?", "A", "B", "C", "D")
                 if odpowiedz == "A":
                     nowa_liczba_pieniedzy = umieszczanie_banknotow("zapadka_A", "A", nowa_liczba_pieniedzy)
                 elif odpowiedz == "B":
@@ -150,8 +156,7 @@ def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze):
                 elif odpowiedz == "D":
                     nowa_liczba_pieniedzy = umieszczanie_banknotow("zapadka_D", "D", nowa_liczba_pieniedzy)
             elif odpowiedz == "Z":
-                print("Z której zapadki chcesz zabrać pieniądze?")
-                odpowiedz = input()
+                odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrać pieniądze?", "A", "B", "C", "D")
                 if odpowiedz == "A":
                     nowa_liczba_pieniedzy = zabieranie_banknotow("zapadka_A", "A", nowa_liczba_pieniedzy)
                 elif odpowiedz == "B":
@@ -244,6 +249,15 @@ def poziom_gry_trzy_zapadki(k1, k2, k3, k4, pieniadze):
                 break
             else:
                 print("Liczba nieprawidłowa!")
+    def obwarowanie_przed_idiotami(pytanie, opcja1, opcja2, opcja3, opcja4):
+          odpowiedz = ""
+          while odpowiedz != opcja1 and odpowiedz != opcja2 and odpowiedz != opcja3 and odpowiedz != opcja4:
+              print(pytanie)
+              odpowiedz = input()
+              if odpowiedz != opcja1 and odpowiedz != opcja2 and odpowiedz != opcja3 and odpowiedz != opcja4:
+                  print("Nieprawdiłowa wartość!")
+              elif odpowiedz == opcja1 or odpowiedz == opcja2 or odpowiedz == opcja3 or odpowiedz == opcja4:
+                  return odpowiedz
 
 
     kategorie_poziomu = [k1,k2,k3,k4]
@@ -284,8 +298,7 @@ def poziom_gry_trzy_zapadki(k1, k2, k3, k4, pieniadze):
             pieniadze = pliki_na_poczatku
         else:
             break
-    print("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
-    odpowiedz_zmiana = input()
+    odpowiedz_zmiana = obwarowanie_przed_idiotami("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")", "T", "N", "N", "T")
     nowa_liczba_pieniedzy = 0
     if odpowiedz_zmiana == "N":
         if 0 in slownik.values():
@@ -297,8 +310,7 @@ def poziom_gry_trzy_zapadki(k1, k2, k3, k4, pieniadze):
                 print("Brawo! Na prawidłowej zapadce znajdowały się banknoty! Liczba zachowanych przez Ciebie plików to:", pieniadze)
                 return pieniadze
     if odpowiedz_zmiana == "T":
-        print("Z której zapadki chcesz zabrać pieniądze?")
-        odpowiedz = input()
+        odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrać pieniądze?", "A", "B", "C", "C")
         if odpowiedz == "A":
             nowa_liczba_pieniedzy = przekladanie_pieniedzy("zapadka_A", "A", nowa_liczba_pieniedzy)
         elif odpowiedz == "B":
@@ -307,12 +319,10 @@ def poziom_gry_trzy_zapadki(k1, k2, k3, k4, pieniadze):
             nowa_liczba_pieniedzy = przekladanie_pieniedzy("zapadka_C", "C", nowa_liczba_pieniedzy)
     if odpowiedz_zmiana == "T":
         while True:
-            print("""Czy teraz chcesz położyć pieniądze na inną zapadkę (wciśnij \"P\"), czy znów zabrać pienądze z zapadki? (wciśnij \"Z\".
-            Jeżeli chcesz zakończyć rozkładanie pieniędzy wciśnij \"Q\"""")
-            odpowiedz = input()
+            odpowiedz = obwarowanie_przed_idiotami("""Czy teraz chcesz położyć pieniądze na inną zapadkę (wciśnij \"P\"), czy znów zabrać pienądze z zapadki? (wciśnij \"Z\".
+            Jeżeli chcesz zakończyć rozkładanie pieniędzy wciśnij \"Q\"""", "Q", "P", "Z")
             if odpowiedz == "P":
-                print("Na którą zapadkę chcesz położyć pieniądze?")
-                odpowiedz = input()
+                odpowiedz = obwarowanie_przed_idiotami("Na którą zapadkę chcesz położyć pieniądze?", "A", "A", "B", "C")
                 if odpowiedz == "A":
                     nowa_liczba_pieniedzy = umieszczanie_banknotow("zapadka_A", "A", nowa_liczba_pieniedzy)
                 elif odpowiedz == "B":
@@ -415,6 +425,16 @@ def poziom_gry_dwie_zapadki(k1, k2, k3, k4, pieniadze):
             else:
                 print("Liczba nieprawidłowa!")
 
+    def obwarowanie_przed_idiotami(pytanie, opcja1, opcja2, opcja3, opcja4):
+          odpowiedz = ""
+          while odpowiedz != opcja1 and odpowiedz != opcja2 and odpowiedz != opcja3 and odpowiedz != opcja4:
+              print(pytanie)
+              odpowiedz = input()
+              if odpowiedz != opcja1 and odpowiedz != opcja2 and odpowiedz != opcja3 and odpowiedz != opcja4:
+                  print("Nieprawdiłowa wartość!")
+              elif odpowiedz == opcja1 or odpowiedz == opcja2 or odpowiedz == opcja3 or odpowiedz == opcja4:
+                  return odpowiedz
+
 
     kategorie_poziomu = [k1,k2,k3,k4]
 
@@ -454,8 +474,7 @@ def poziom_gry_dwie_zapadki(k1, k2, k3, k4, pieniadze):
 
         else:
             break
-    print("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")")
-    odpowiedz_zmiana = input()
+    odpowiedz_zmiana = obwarowanie_przed_idiotami("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")", "T", "N", "N", "T")
     nowa_liczba_pieniedzy = 0
     if odpowiedz_zmiana == "N":
         if 0 in slownik.values():
@@ -467,27 +486,24 @@ def poziom_gry_dwie_zapadki(k1, k2, k3, k4, pieniadze):
                 print("Brawo! Na prawidłowej zapadce znajdowały się banknoty! Liczba zachowanych przez Ciebie plików to:", pieniadze)
                 return pieniadze
     if odpowiedz_zmiana == "T":
-        print("Z której zapadki chcesz zabrać pieniądze?")
-        odpowiedz = input()
+        odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrac pieniądze?", "A", "A", "B", "B")
         if odpowiedz == "A":
             nowa_liczba_pieniedzy = przekladanie_pieniedzy("zapadka_A", "A", nowa_liczba_pieniedzy)
         elif odpowiedz == "B":
             nowa_liczba_pieniedzy = przekladanie_pieniedzy("zapadka_B", "B", nowa_liczba_pieniedzy)
     if odpowiedz_zmiana == "T":
         while True:
-            print("""Czy teraz chcesz położyć pieniądze na inną zapadkę (wciśnij \"P\"), czy znów zabrać pienądze z zapadki? (wciśnij \"Z\".
-            Jeżeli chcesz zakończyć rozkładanie pieniędzy wciśnij \"Q\"""")
-            odpowiedz = input()
+            odpowiedz = obwarowanie_przed_idiotami("""Czy teraz chcesz położyć pieniądze na inną zapadkę (wciśnij \"P\"), czy znów zabrać pienądze z zapadki? (wciśnij \"Z\".
+            Jeżeli chcesz zakończyć rozkładanie pieniędzy wciśnij \"Q\"""", "Q", "P", "Z", "Z")
+
             if odpowiedz == "P":
-                print("Na którą zapadkę chcesz położyć pieniądze?")
-                odpowiedz = input()
+                odpowiedz = obwarowanie_przed_idiotami("Na którą zapadkę chcesz położyć pieniądze?", "A", "A", "B", "B")
                 if odpowiedz == "A":
                     nowa_liczba_pieniedzy = umieszczanie_banknotow("zapadka_A", "A", nowa_liczba_pieniedzy)
                 elif odpowiedz == "B":
                     nowa_liczba_pieniedzy = umieszczanie_banknotow("zapadka_B", "B", nowa_liczba_pieniedzy)
             elif odpowiedz == "Z":
-                print("Z której zapadki chcesz zabrać pieniądze?")
-                odpowiedz = input()
+                odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrac pieniądze?", "A", "A", "B", "B")
                 if odpowiedz == "A":
                     nowa_liczba_pieniedzy = zabieranie_banknotow("zapadka_A", "A", nowa_liczba_pieniedzy)
                 elif odpowiedz == "B":
