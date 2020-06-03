@@ -1,6 +1,6 @@
-#na 99% bo musze zdebugować, bo jedna rzecz mi sie zle wyswietla
-#a, no i dodać timer
-#jak to skończę, to zostanie tylko wywołanie funkcji x8 i cały kod gotowy
+#naprawione juz
+#teraz tylko timer
+
 import random
 
 
