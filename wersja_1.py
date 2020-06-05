@@ -1,4 +1,5 @@
 #To jest gra "Postaw na milion". Brakuje niestety timera odliczającego minutę dla każdej rundy.
+#Jeszcze chciałabym dodać czyszczenie ekranu po każdej rundzie
 import random
 import time
 
