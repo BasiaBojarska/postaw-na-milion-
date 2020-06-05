@@ -1,7 +1,7 @@
 #To jest gra "Postaw na milion". Brakuje niestety timera odliczającego minutę dla każdej rundy.
-#Jeszcze chciałabym dodać czyszczenie ekranu po każdej rundzie
 import random
 import time
+import os
 
 def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
     def poprawna_zapadka(kategoria): #określanie prawidłowej zapadki dla danego pytania
@@ -129,10 +129,14 @@ def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
         if 0 in slownik.values():
             if slownik[str(prawidlowa_zapadka)] == 0:
                 print("Przegrałeś!")
+                time.sleep(7)
+                os.system("cls")
                 return 0
             else:
                 pieniadze = slownik[str(prawidlowa_zapadka)]
                 print("Brawo! Na prawidłowej zapadce znajdowały się banknoty! Liczba zachowanych przez Ciebie plików to:", pieniadze)
+                time.sleep(7)
+                os.system("cls")
                 return pieniadze
     if odpowiedz_zmiana == "T":
         odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrać pieniądze?", "A", "B", "C", "D")
@@ -178,12 +182,17 @@ def poziom_gry_cztery_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
                 else:
                         if slownik[str(prawidlowa_zapadka)] == 0:
                             print("Przegrałeś!")
+                            time.sleep(7)
+                            os.system("cls")
                             return 0
                         else:
                             pieniadze = slownik[str(prawidlowa_zapadka)]
                             print("Brawo! Na prawdiłowej zapadce znajdowały się banknoty. Liczba zachowanych przez Ciebie plików to:", pieniadze, ". Przechodzisz do kolejnego poziomu!")
+                            time.sleep(7)
+                            os.system("cls")
                             return pieniadze
                         break
+
 def poziom_gry_trzy_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
     def poprawna_zapadka(kategoria): #określanie prawidłowej zapadki dla danego pytania
         n = random.randint(0,2)
@@ -302,16 +311,20 @@ def poziom_gry_trzy_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
             pieniadze = pliki_na_poczatku
         else:
             break
-    odpowiedz_zmiana = obwarowanie_przed_idiotami("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")", "T", "N", "N", "T")
+    odpowiedz_zmiana = obwarowanie_przed_idiotami("""Tak wyglądają zapadki:""" + str(slownik) + """.Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")""", "T", "N", "N", "T")
     nowa_liczba_pieniedzy = 0
     if odpowiedz_zmiana == "N":
         if 0 in slownik.values():
             if slownik[str(prawidlowa_zapadka)] == 0:
                 print("Przegrałeś!")
+                time.sleep(7)
+                os.system("cls")
                 return 0
             else:
                 pieniadze = slownik[str(prawidlowa_zapadka)]
                 print("Brawo! Na prawidłowej zapadce znajdowały się banknoty! Liczba zachowanych przez Ciebie plików to:", pieniadze)
+                time.sleep(7)
+                os.system("cls")
                 return pieniadze
     if odpowiedz_zmiana == "T":
         odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrać pieniądze?", "A", "B", "C", "C")
@@ -355,11 +368,17 @@ def poziom_gry_trzy_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
                         if slownik[str(prawidlowa_zapadka)] == 0:
                             print("Przegrałeś!")
                             return 0
+                            time.sleep(7)
+                            os.system("cls")
                         else:
                             pieniadze = slownik[str(prawidlowa_zapadka)]
                             print("Brawo! Na prawdiłowej zapadce znajdowały się banknoty. Liczba zachowanych przez Ciebie plików to:", pieniadze, ". Przechodzisz do kolejnego poziomu!")
+                            time.sleep(7)
+                            os.system("cls")
                             return pieniadze
+
                         break
+
 def poziom_gry_dwie_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
     def poprawna_zapadka(kategoria): #określanie prawidłowej zapadki dla danego pytania
         n = random.randint(0,2)
@@ -479,16 +498,20 @@ def poziom_gry_dwie_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
 
         else:
             break
-    odpowiedz_zmiana = obwarowanie_przed_idiotami("Tak wyglądają zapadki:",slownik,".Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")", "T", "N", "N", "T")
+    odpowiedz_zmiana = obwarowanie_przed_idiotami("""Tak wyglądają zapadki:""" + str(slownik) + """.Czy chcesz je zmienić? (Wpisz \"T\" jeśli \"Tak\" lub \"N\" jeśli \"Nie\")""", "T", "N", "N", "T")
     nowa_liczba_pieniedzy = 0
     if odpowiedz_zmiana == "N":
         if 0 in slownik.values():
             if slownik[str(prawidlowa_zapadka)] == 0:
                 print("Przegrałeś!")
+                time.sleep(7)
+                os.system("cls")
                 return 0
             else:
                 pieniadze = slownik[str(prawidlowa_zapadka)]
                 print("Brawo! Na prawidłowej zapadce znajdowały się banknoty! Liczba zachowanych przez Ciebie plików to:", pieniadze)
+                time.sleep(7)
+                os.system("cls")
                 return pieniadze
     if odpowiedz_zmiana == "T":
         odpowiedz = obwarowanie_przed_idiotami("Z której zapadki chcesz zabrac pieniądze?", "A", "A", "B", "B")
@@ -524,10 +547,14 @@ def poziom_gry_dwie_zapadki(k1, k2, k3, k4, pieniadze, numer_poziomu):
                 else:
                         if slownik[str(prawidlowa_zapadka)] == 0:
                             print("Przegrałeś!")
+                            time.sleep(7)
+                            os.system("cls")
                             return 0
                         else:
                             pieniadze = slownik[str(prawidlowa_zapadka)]
                             print("Brawo! Na prawdiłowej zapadce znajdowały się banknoty. Liczba zachowanych przez Ciebie plików to:", pieniadze, ". Przechodzisz do kolejnego poziomu!")
+                            time.sleep(7)
+                            os.system("cls")
                             return pieniadze
                         break
 zachowane_pieniadze = 1
