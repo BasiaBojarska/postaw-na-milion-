@@ -1,6 +1,5 @@
 #jest to gra postaw na milion. Niestety nie udało się zrobić timera odliczającego minutę na każdą rundę :(
-#i niestety pytania się powtarzają, gdyż osoba, której zleciłam przekonwertowanie pytań na tę formę, w której są tutaj
-#tego nie zrobiła. Nie mniej, jeśli podstawić
+
 import random
 import time
 
